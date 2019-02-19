@@ -1,5 +1,8 @@
 "
 Day 6
+
+D6 part1: 'E:/Gabriel_2/Work/AOC2018/Day6/input.txt'
+D6 part2: 'E:/Gabriel_2/Work/AOC2018/Day6/input.txt'
 "
 Class {
 	#name : #D6,
@@ -21,11 +24,6 @@ D6 >> grid: anObject [
 	grid := anObject
 ]
 
-{ #category : #private }
-D6 >> manhattanDistFrom: p1 to: p2 [
-	^ (p1 x - p2 x) abs + (p1 y - p2 y) abs
-]
-
 { #category : #parts }
 D6 >> part1 [
 	| max tempPoint dists min nbMin indices |
@@ -38,7 +36,7 @@ D6 >> part1 [
 	grid := grid
 		indicesCollect: [ :i :j | 
 			tempPoint := i @ j.
-			dists := points collect: [ :p | self manhattanDistFrom: tempPoint to: p ].
+			dists := points collect: [ :p | tempPoint manhattanDist: p ].
 			min := dists min.
 			nbMin := dists occurrencesOf: min.
 			nbMin = 1
@@ -66,7 +64,7 @@ D6 >> part2 [
 	grid := grid
 		indicesCollect: [ :i :j | 
 			tempPoint := i @ j.
-			dists := points collect: [ :p | self manhattanDistFrom: tempPoint to: p ].
+			dists := points collect: [ :p | tempPoint manhattanDist: p ].
 			sum := dists sum.
 			sum < 10000
 				ifTrue: [ 1 ]
