@@ -1,5 +1,8 @@
 "
 Day10
+
+D10 part1: 'E:/Gabriel_2/Work/AOC2018/Day10/input.txt'
+D10 part2: 'E:/Gabriel_2/Work/AOC2018/Day10/input.txt'
 "
 Class {
 	#name : #D10,
@@ -17,6 +20,26 @@ D10 >> backward [
 	stars do: [ :each | each backward ]
 ]
 
+{ #category : #parts }
+D10 >> computeSize [
+	| min max |
+	min := (stars detectMin: [ :star | star y ]) y.
+	max := (stars detectMax: [ :star | star y ]) y.
+	^ max - min
+]
+
+{ #category : #parts }
+D10 >> display [
+	| minY maxY minX maxX grid |
+	minY := (stars detectMin: [ :star | star y ]) y.
+	maxY := (stars detectMax: [ :star | star y ]) y.
+	minX := (stars detectMin: [ :star | star x ]) x.
+	maxX := (stars detectMax: [ :star | star x ]) x.
+	grid := Grid rowsInterval: (minY to: maxY) columnsInterval: (minX to: maxX)  withAll: Character space.
+	stars do: [ :each | grid at: each x at: each y put: $* ].
+	grid print
+]
+
 { #category : #actions }
 D10 >> forward [
 	self time: (self time + 1).
@@ -25,7 +48,7 @@ D10 >> forward [
 
 { #category : #initialization }
 D10 >> initStars [
-	self stars: (lines collect: [ :line | Star new fromLine: line ])
+	self stars: (lines collect: [ :line | Star new fromString: line ])
 ]
 
 { #category : #initialization }
@@ -35,11 +58,19 @@ D10 >> initialize [
 
 { #category : #parts }
 D10 >> part1 [
-
+	| size |
+	self initStars.
+	size := self computeSize.
+	[ size >= 10 ]
+		whileTrue: [ self forward.
+			size := self computeSize ].
+	self display
 ]
 
 { #category : #parts }
 D10 >> part2 [
+	self part1.
+	^ time
 
 ]
 

@@ -32,8 +32,8 @@ Star >> forward [
 { #category : #initialization }
 Star >> fromString: aLine [
 	Matcher matches: aLine.
-	self position: (Matcher subexpression: 2) @ (Matcher subexpression: 3).
-	self velocity: (Matcher subexpression: 4) @ (Matcher subexpression: 5)
+	self position: (Matcher subexpression: 2) asInteger @ (Matcher subexpression: 3) asInteger.
+	self velocity: (Matcher subexpression: 4) asInteger @ (Matcher subexpression: 5) asInteger
 ]
 
 { #category : #accessing }

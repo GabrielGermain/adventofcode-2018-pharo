@@ -30,10 +30,6 @@ Grid class >> rowsInterval: rowsInterval columnsInterval: columnsInterval withAl
 	
 ]
 
-{ #category : #initialization }
-Grid class >> width: anIntWidth y: anInt [ 
-]
-
 { #category : #acccessing }
 Grid >> at: x at: y [
 	^ (lines at: y + yShift) at: x + xShift
