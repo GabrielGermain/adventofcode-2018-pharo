@@ -1,5 +1,8 @@
 "
 Day8
+
+D8 part1: 'E:/Gabriel_2/Work/AOC2018/Day8/input.txt'
+D8 part2: 'E:/Gabriel_2/Work/AOC2018/Day8/input.txt'
 "
 Class {
 	#name : #D8,

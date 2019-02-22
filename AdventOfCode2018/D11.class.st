@@ -1,5 +1,11 @@
 "
 Day11
+
+d := D11 new serial: 1309.
+cell := d part1: 3
+cell x , cell y
+cell := d part2
+cell x, cell y, cell id
 "
 Class {
 	#name : #D11,

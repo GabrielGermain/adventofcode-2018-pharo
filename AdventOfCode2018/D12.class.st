@@ -1,5 +1,10 @@
 "
 Day 12
+
+d := D12 fromFile: 'E:/Gabriel_2/Work/AOC2018/Day12/input2.txt'
+d initFromLines
+(d part1: 20) last
+(d part1: 1000)
 "
 Class {
 	#name : #D12,
