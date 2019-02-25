@@ -1,10 +1,8 @@
 "
 Day 12
 
-d := D12 fromFile: 'E:/Gabriel_2/Work/AOC2018/Day12/input2.txt'
-d initFromLines
-(d part1: 20) last
-(d part1: 1000)
+D12 part1: 'E:/Gabriel_2/Work/AOC2018/Day12/input2.txt'
+D12 part2: 'E:/Gabriel_2/Work/AOC2018/Day12/input2.txt'
 "
 Class {
 	#name : #D12,
@@ -76,21 +74,32 @@ D12 >> origState: anObject [
 ]
 
 { #category : #parts }
+D12 >> part1 [
+	self initFromLines.
+	self initState: 20.
+	20 timesRepeat: [ self nextState ].
+	^ self computeSum
+]
+
+{ #category : #parts }
 D12 >> part1: nbGeneration [
+	self initFromLines.
 	sums := OrderedCollection new.
 	self initState: nbGeneration.
-	nbGeneration timesRepeat: [ self nextState. sums add: self computeSum  ].
-	^ sums 
-	
-	
-	
-
+	nbGeneration
+		timesRepeat: [ self nextState.
+			sums add: self computeSum ].
+	^ sums
 ]
 
 { #category : #parts }
 D12 >> part2 [
-	1
-
+	| last beforeLast interval |
+	sums := self part1: 1000.
+	last := sums removeLast.
+	beforeLast := sums removeLast.
+	interval := last - beforeLast.
+	^ last + ((50000000000 - 1000) * interval)
 ]
 
 { #category : #accessing }
