@@ -66,9 +66,21 @@ D14 >> part1 [
 ]
 
 { #category : #parts }
+D14 >> part1: anInput [
+	self computeFor: anInput.
+	^ self scoreFor: anInput
+]
+
+{ #category : #parts }
 D14 >> part2 [
 	self computeFor: 100000000.
 	^ self findSequence: '306281'
+]
+
+{ #category : #parts }
+D14 >> part2: anInput [
+	self computeFor: 100000000.
+	^ self findSequence: anInput asString
 ]
 
 { #category : #accessing }
