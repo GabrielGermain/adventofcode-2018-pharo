@@ -1,5 +1,8 @@
 "
 Day 16
+
+D16 part1: 'E:/Gabriel_2/Work/AOC2018/Day16/input2.txt'
+D16 part2: 'E:/Gabriel_2/Work/AOC2018/Day16/input2.txt'
 "
 Class {
 	#name : #D16,
@@ -149,13 +152,15 @@ D16 >> part1 [
 { #category : #parts }
 D16 >> part2 [
 	| result |
-	unknownOpcodes := (self class selectorsInProtocol: 'opcodes') asOrderedCollection.
+	unknownOpcodes := (self class selectorsInProtocol: 'opcodes')
+		asOrderedCollection.
 	opcodes := Dictionary new.
 	[ unknownOpcodes isNotEmpty ]
 		whileTrue: [ result := self part1.
 			opcodes at: (result at: 3) put: (result at: 2).
 			unknownOpcodes remove: (result at: 2) ].
 	self executeTestProgram.
+	^ registers at: 1
 ]
 
 { #category : #registers }

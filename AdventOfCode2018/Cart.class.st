@@ -65,8 +65,9 @@ Cart class >> withPosition: aPoint andDirection: aChar andId: anInteger [
 
 { #category : #comparing }
 Cart >> <= aCart [
-	^ position y <= aCart position y and: [ position x <= aCart position x ]
-	
+	^ position y < aCart position y
+		or: [ position y = aCart position y
+				and: [ position x <= aCart position x ] ]
 ]
 
 { #category : #accessing }

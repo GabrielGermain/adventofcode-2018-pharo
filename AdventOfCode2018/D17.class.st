@@ -1,5 +1,8 @@
 "
 Day 17
+
+D17 part1: 'E:/Gabriel_2/Work/AOC2018/Day17/input2.txt'
+D17 part2: 'E:/Gabriel_2/Work/AOC2018/Day17/input2.txt'
 "
 Class {
 	#name : #D17,
@@ -130,7 +133,8 @@ D17 >> isClosedEnd [
 
 { #category : #parts }
 D17 >> part1 [
-
+	self buildGrid.
+	self initWater.
 ]
 
 { #category : #parts }

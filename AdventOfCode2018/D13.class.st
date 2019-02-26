@@ -71,7 +71,7 @@ D13 >> nextStep [
 			cart move: (self valueAt: nextPosition).
 			collidingIndex := carts findFirst: [ :each | (cart position = each position) and: [ cart id ~= each id ] ].
 			collidingIndex = 0
-				ifFalse: [ collision := nextPosition ] ]
+				ifFalse: [ ^ collision := nextPosition ] ]
 ]
 
 { #category : #parts }
