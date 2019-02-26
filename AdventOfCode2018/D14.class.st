@@ -1,5 +1,8 @@
 "
 Day14
+
+D14 new part1: 209231
+D14 new part2: 209231
 "
 Class {
 	#name : #D14,
