@@ -14,7 +14,8 @@ Class {
 		'upperBound',
 		'lineIndex',
 		'leftIndex',
-		'rightIndex'
+		'rightIndex',
+		'decrement'
 	],
 	#category : #'AdventOfCode2018-Day17'
 }
@@ -24,10 +25,18 @@ D17 >> buildGrid [
 	| xInterval yInterval |
 	walls := lines collect: [ :line | Clay fromLine: line ].
 	self findLimits.
-	xInterval := lowerBound x - 1 to: upperBound x + 1.
+	xInterval := lowerBound x - 2 to: upperBound x + 2.
 	yInterval := 1 to: upperBound y + 1.
 	grid := Grid rowsInterval: yInterval columnsInterval: xInterval withAll: $..
 	walls do: [ :each | each fillGrid: grid ]
+]
+
+{ #category : #parts }
+D17 >> buildGridFromLines [
+	grid := Grid lines: (lines collect: [ :l | l copy ]).
+	lowerBound := 1 @ 1.
+	upperBound := lines first size @ lines size.
+	lineIndex := 1
 ]
 
 { #category : #parts }
@@ -62,12 +71,13 @@ D17 >> fillLineFrom: index [
 	| line nextLine |
 	line := grid nativeLineAt: lineIndex.
 	nextLine := grid nativeLineAt: lineIndex + 1.
-	((line at: index + 1) = $| or: (nextLine at: index) = $|) ifTrue: [ ^self ].
+	(((line at: index + 1) = $| and: [(nextLine at: index) ~= $~]) or: (nextLine at: index) = $|)
+		ifTrue: [ ^ self ].
 	self findBoundaries: index.
-	(self isClosedEnd) ifTrue: [ self fillClosedEnd. lineIndex := lineIndex - 2 ] ifFalse: [ self fillOpenEnd ]
-	
-	
-	
+	self isClosedEnd
+		ifTrue: [ self fillClosedEnd.
+			decrement := decrement + 2 ]
+		ifFalse: [ self fillOpenEnd ]
 ]
 
 { #category : #parts }
@@ -106,16 +116,31 @@ D17 >> findLimits [
 
 { #category : #parts }
 D17 >> flowToNextLine [
-	| line nextLine |
+	| line |
+	decrement := 0.
 	line := grid nativeLineAt: lineIndex.
-	nextLine := grid nativeLineAt: lineIndex + 1.
 	line
 		withIndexDo: [ :val :i | 
 			val = $|
-				ifTrue: [ (nextLine at: i) = $.
-						ifTrue: [ nextLine at: i put: $|]
-						ifFalse: [ self fillLineFrom: i ] ] ].
-				lineIndex := lineIndex + 1
+				ifTrue: [ self handleFlowAt: i ] ].
+	lineIndex := decrement > 0
+		ifTrue: [ lineIndex - decrement ]
+		ifFalse: [ lineIndex + 1 ]
+]
+
+{ #category : #parts }
+D17 >> handleFlowAt: i [
+	| line nextLine |
+	line := grid nativeLineAt: lineIndex.
+	nextLine := grid nativeLineAt: lineIndex + 1.
+	(nextLine at: i) = $|
+		ifTrue: [ ^ self ].
+	((line at: i - 1) = $| and: [ (line at: i + 1) = $| ])
+		ifTrue: [ ^ self ].
+	(nextLine at: i) = $.
+		ifTrue: [ nextLine at: i put: $|.
+			^ self ].
+	self fillLineFrom: i
 ]
 
 { #category : #parts }
@@ -135,9 +160,18 @@ D17 >> isClosedEnd [
 D17 >> part1 [
 	self buildGrid.
 	self initWater.
+	[ lineIndex < upperBound y ] whileTrue: [ self flowToNextLine ].
+	^ self count
 ]
 
 { #category : #parts }
 D17 >> part2 [
+	self part1.
+	^ self countRetained
+]
 
+{ #category : #parts }
+D17 >> runSample [
+	[ lineIndex < upperBound y ] whileTrue: [ self flowToNextLine ].
+	^ self "count"
 ]

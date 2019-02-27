@@ -13,6 +13,12 @@ Class {
 }
 
 { #category : #initialization }
+Grid class >> lines: lines [
+	^ self new lines: lines; xShift: 0; yShift: 0; yourself.
+	
+]
+
+{ #category : #initialization }
 Grid class >> rows: rowCount columns: columnCount withAll: anObject [
 	| lines line|
 	lines := OrderedCollection new: rowCount.
