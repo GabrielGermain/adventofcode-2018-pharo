@@ -1,5 +1,13 @@
 "
 Day 19
+
+First, transpile instructions into a Pharo class:
+(D19Compiler fromFile: 'E:/Gabriel_2/Work/AOC2018/Day19/input2.txt') compileProgram
+Execute the generated program to answer part1:
+D19Program new execute
+
+I have done manual optimizations and set register 0 to 1 to answer part2 (see step4 in D19ProgramManual)
+D19ProgramOptimized new execute
 "
 Class {
 	#name : #D19,
