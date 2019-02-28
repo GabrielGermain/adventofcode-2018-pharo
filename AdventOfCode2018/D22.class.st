@@ -1,5 +1,12 @@
 "
 Day22
+
+As collection starts at 1 in Pharo, you must add 1 to the target coordinates
+For input:
+depth: 7305
+target: 13,734
+(D22 withDepth: 7305 withTarget: 14@735) part1
+(D22 withDepth: 7305 withTarget: 14@735) part2
 "
 Class {
 	#name : #D22,
@@ -96,6 +103,7 @@ D22 >> part1 [
 { #category : #parts }
 D22 >> part2 [
 	| current |
+	self computeTypes.
 	self initClosedNodes.
 	self initOpenNodes.
 	[ open isNotEmpty ]
