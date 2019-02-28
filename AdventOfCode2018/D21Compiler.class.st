@@ -1,8 +1,16 @@
 "
 D21Compiler
 
-compiler := D21Compiler fromFile: 'E:\Gabriel_2\Work\AOC2018\Day21\input.txt'.
-compiler compileProgram
+Transpile the instructions:
+(D21Compiler fromFile: 'E:\Gabriel_2\Work\AOC2018\Day21\input2.txt') compileProgram.
+One comparison with register 0 is done in step 28.
+Add a breakpoint here to check value to answer part1.
+D21ProgramManual2 new execute
+To answer part2, we need to find the first repeating value.
+Add a collection of values to program attributes and to step28 (the value to check depends on your input, d in my case):
+(values includes: d) ifTrue: [ self halt ].
+values add: d.
+The answer is: values last
 "
 Class {
 	#name : #D21Compiler,
