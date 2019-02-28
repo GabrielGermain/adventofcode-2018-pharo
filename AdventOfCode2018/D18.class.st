@@ -1,5 +1,8 @@
 "
 Day 18
+
+D18 part1: 'E:/Gabriel_2/Work/AOC2018/Day18/input2.txt'
+D18 part2: 'E:/Gabriel_2/Work/AOC2018/Day18/input2.txt'
 "
 Class {
 	#name : #D18,
@@ -64,6 +67,11 @@ D18 >> part1 [
 	self buildGrid.
 	10 timesRepeat: [ self nextMinute ].
 	^ self score
+]
+
+{ #category : #parts }
+D18 >> part2 [
+	^ self part2: 1000000000
 ]
 
 { #category : #parts }
