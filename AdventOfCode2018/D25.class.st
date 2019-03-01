@@ -1,5 +1,7 @@
 "
 Day 25
+
+D25 part1: 'E:/Gabriel_2/Work/AOC2018/Day25/input2.txt'
 "
 Class {
 	#name : #D25,
