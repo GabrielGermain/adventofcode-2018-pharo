@@ -1,6 +1,11 @@
 "
 Day23
 Solution for part2 largely inspired by: https://raw.githack.com/ypsu/experiments/master/aoc2018day23/vis.html
+
+D23 part1: 'E:/Gabriel_2/Work/AOC2018/Day23/input2.txt'
+D23 part2: 'E:/Gabriel_2/Work/AOC2018/Day23/input2.txt'
+
+
 "
 Class {
 	#name : #D23,

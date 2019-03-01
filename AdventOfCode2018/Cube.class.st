@@ -85,6 +85,7 @@ Cube >> countNanobotsInRange: nanobotList [
 { #category : #operations }
 Cube >> isInRange: aNanobot [
 	| halfLength rangeDist |
+	length = 0 ifTrue: [ ^ (center manhattanDist: aNanobot pos) <= aNanobot r ].
 	halfLength := length / 2.
 	rangeDist := (self rangeDist: aNanobot pos x lo: center x - halfLength hi: center x + halfLength)
 		+ (self rangeDist: aNanobot pos y lo: center y - halfLength hi: center y + halfLength)
@@ -142,7 +143,7 @@ Cube >> splitToCubes [
 	half := length / 2.
 	^ cubeCenters
 		collect: [ :p | 
-			subCenter := (p scaleByInt: half) + center.
+			subCenter := (p scaleByInt: half/2) + center.
 			Cube center: subCenter length: half ]
 ]
 
